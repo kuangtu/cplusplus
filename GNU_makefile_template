@@ -5,7 +5,7 @@
 #      of code the uses features that might not yet be implemented
 CC = g++
 CCFLAGS=-std=c++0x -I.. -Wall -Wextra -Wconversion -Wpointer-arith \
--Wshadow -Wno-unused-parameter
+-Wshadow -Wno-unused-parameter -ggdb
 
 # Some programs include headers defined in earlier chapters
 # LOCFLAGS used to set tell the compiler where to find a
