@@ -149,8 +149,46 @@ operate on arrays: We cannot copy an array
 
     for (auto i = 0; i != 5; i++)
     {
-        cout << arraPtr[i] << endl;
+        cout << (*arraPtr)[i] << endl;
     }
+
+
+//同一作用域内函数名字相同，形参列表不同，称为重载函数。overload
+//void print(const char *cp);
+//void print(const int *beg, const int *end);
+//void print(const int ia[], size_t size);
+
+//顶层const不影响传入函数的对象
+//int lookup(int *a);
+//int lookup(const int *a);
+//两者的声明是等价的
+
+//默认实参
+//typedef string::size_type sz;
+//string screen(sz ht = 24, sz wid = 80, char backgrd = ' ');
+
+//调用是可以省略
+//string window;
+//window = screen(); 
+//window = screen(80);
+//window = screen(80, 55);
+//window = screen(80, 55, '#');
+//默认实参负责填补函数调用缺少的尾部实参
+//window = screen(, , '?');   //错误
+
+//改变了默认实参
+//sz wd = 80;
+//char def = ' ';
+//sz ht();
+//string screen(sz = ht(), sz = wd, char = def);
+
+//void f2()
+//{
+//    def = '*';
+//    sz wd = 100;
+//    window = screen(); //此时调用的是，screen(ht(), 80, '*');
+//    //隐藏了外层定义的wd，但是没有改变默认值
+//}
 
     return 0;
 }
