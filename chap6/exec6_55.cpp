@@ -36,7 +36,9 @@ int
 main(int argc, char *argv[])
 {
 
-    vector<pFunc1> vfunc(4);
+    //vector<pFunc1> vfunc{addint, subint, mulint, divint};
+    //定义了vector，没有初始化，通过push_back追加
+    vector<pFunc1> vfunc;
     vfunc.push_back(addint);
     vfunc.push_back(subint);
     vfunc.push_back(mulint);
@@ -44,10 +46,13 @@ main(int argc, char *argv[])
 
     for (size_t i = 0; i != vfunc.size(); i++)
     {
+        
+        //vector中的每个元素类型是函数指针，pFunc1
         pFunc1 p = vfunc[i];
-
-        //cout << p(1,1) << endl;
-        //TODO
+        int res = p(1,1);
+        cout << res <<endl;
+        printf("%s==========%d===========%s\n", __FILE__, __LINE__, __FUNCTION__);
+        cout << vfunc[i](1,1) << endl;
         
     }
     return 0;
