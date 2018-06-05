@@ -28,6 +28,5 @@ main(int argc, char *argv[])
 	//无缓冲
 	cout << unitbuf;
 
-
 	return 0;
 }
