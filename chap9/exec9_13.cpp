@@ -48,6 +48,8 @@ main(int argc, char *argv[])
 	list<int> listints = {1, 2, 3, 4 };
 	list<int>::iterator begin1 = listints.begin();
 	list<int>::iterator end1 = listints.end();
+
+    //将迭代器放入到初始化中
 	vector<double> vectordouble(begin1, end1);
 
 	vector<double>::iterator begin2 = vectordouble.begin();
