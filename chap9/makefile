@@ -1,5 +1,5 @@
 # executable files for this directory
-OBJECTS = container.exe exec9_4.exe exec9_10.exe exec9_11.exe exec9_13.exe exec9_14.exe compare.exe exec9_16.exe addelement.exe exec9_18.exe
+OBJECTS = container.exe exec9_4.exe exec9_10.exe exec9_11.exe exec9_13.exe exec9_14.exe compare.exe exec9_16.exe addelement.exe exec9_18.exe emplace.exe insert.exe exec9_20.exe exec9_22.exe vistor.exe
 
 # tells make to use the file "../GNU_makefile_template", which
 # defines general rules for making .o and .exe files
