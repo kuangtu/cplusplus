@@ -18,8 +18,8 @@ int
 main(int argc, char *argv[])
 {
     int ia[] = {0, 1, 1, 2, 3, 5, 8, 13, 21, 55, 89};
-    vector<int> v = (ia, ia + sizeof(ia) / sizeof(ia[0]));
-    list<int> lst = (ia, ia + sizeof(ia) / sizeof(ia[0]));
+    vector<int> v(ia, ia + sizeof(ia) / sizeof(ia[0]));
+    list<int> lst(ia, ia + sizeof(ia) / sizeof(ia[0]));
     
     return 0;
 }
