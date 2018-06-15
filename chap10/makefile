@@ -1,1 +1,6 @@
-#test
+# executable files for this directory
+OBJECTS = find.exe exec10_1.exe
+
+# tells make to use the file "../GNU_makefile_template", which
+# defines general rules for making .o and .exe files
+include ../GNU_makefile_template

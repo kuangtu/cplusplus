@@ -34,5 +34,6 @@ main(int argc, char *argv[])
 
 		intStack.pop();
 	}
+
 	return 0;
 }
