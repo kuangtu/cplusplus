@@ -10,20 +10,17 @@ using std::cin;
 using std::endl;
 using std::find;
 using std::count;
+using std::accumulate;
 
 int
 main(int argc, char *argv[])
 {
+	int array[] = {1, 2, 3, 4, 5};
+	vector<int> ia(array, array + sizeof(array) /sizeof(array[0]));
 
-    //vector<int> vint = {1, 2, 3, 4, 5};
-    vector<int> vint = {1, 1, 1, 4, 5};
-    int c;
-    auto begin = vint.begin();
-    auto end = vint.end();
+	int sum = accumulate(ia.cbegin(), ia.cend(), 0);
 
-    c = count(begin, end, 1);
+	cout  << sum <<endl;
 
-    cout << c << endl;
-
-    return 0;
+	return 0;
 }
