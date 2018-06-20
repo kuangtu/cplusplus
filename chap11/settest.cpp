@@ -16,8 +16,7 @@ main(int argc, char *argv[])
 
 	map<string, size_t> word_count;
 	string word;
-	set<string> exclude = {"The", "this", "that", "and", "or", "the"};
-
+	set<string> exclude = {"The", "this", "that", "and", "or", "the"}; 
 	while(cin >> word)
 	{
 		//如果找不到，则返回set的尾迭代器
