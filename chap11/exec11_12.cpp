@@ -32,7 +32,6 @@ main(int argc, char *argv[])
 	cout << p.first << endl;
 
 	cout << p.second << endl;
-
 	
 
 	return 0;
