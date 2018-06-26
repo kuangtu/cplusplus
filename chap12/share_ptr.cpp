@@ -38,6 +38,10 @@ class StrBlob {
 		//add and del item
 		void push_back(const string &t) { data->push_back(t); }
 		void pop_back();
+
+		//visit item
+		string& front();
+		string& back();
 	private:
 		shared_ptr<vector<string>> data;
 		void check(size_type i, const string &msg) const;
@@ -55,6 +59,21 @@ StrBlob::check(size_type i, const string &msg) const
 		throw out_of_range(msg);
 	}
 }
+
+string& StrBlob::front()
+{
+	check(0, "front on empyt StrBlob");
+
+	return data->front();
+}
+
+string& StrBlob::back()
+{
+	check(0, "back on empty StrBlob");
+
+	return data->back();
+}
+
 
 int
 main(int argc, char *argv[]) 
