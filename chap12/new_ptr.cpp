@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+//new头文件定义
+#include <new>
+
 using std::string;
 using std::cout;
 using std::endl;
@@ -44,6 +47,14 @@ main(int argc, char *argv[])
 	//指向const int，不能改变
 	//*pci = 200;
 	
+    //如果分配失败，new抛出异常std::bad_alloc
+    //int *p11 = new int; //失败，抛出了std::bad_alloc
+    //int *p22 = new (nothrow) int; //如果分配失败，new返回一个空指针
+
+    //释放动态内存
+    
+    delete pci; //p指向一个动态分配的对象或者一个空指针
 	return 0;
+
 }
 
