@@ -56,5 +56,7 @@ main(int argc, char *argv[])
     delete pci; //p指向一个动态分配的对象或者一个空指针
 	return 0;
 
+
+
 }
 
