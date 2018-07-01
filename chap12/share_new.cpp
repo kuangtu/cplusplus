@@ -33,6 +33,11 @@ using std::out_of_range;
 //}
 
 
+shared_ptr<int> clone(int p)
+{
+	return shared_ptr<int>(new int(p));
+}
+
 int
 main(int argc, char *argv[]) 
 {
