@@ -1,5 +1,5 @@
 # executable files for this directory
-OBJECTS = copy_initial.exe
+OBJECTS = copy_initial.exe sales.exe
 
 # tells make to use the file "../GNU_makefile_template", which
 # defines general rules for making .o and .exe files
