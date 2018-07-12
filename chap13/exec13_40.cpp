@@ -2,12 +2,27 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <list>
+#include <set>
+#include <vector>
+#include <map>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <set>
+#include <vector>
+#include <utility>
+#include <list>
+#include <memory>
+#include <stdexcept>
+#include <utility>
 
 using std::string;
 using std::cout;
 using std::endl;
 using std::allocator;
 using std::pair;
+using std::initializer_list;
 
 //通常使用std::move，而不是move
 //using std::move;
@@ -17,6 +32,7 @@ using std::pair;
 class StrVec {
 	public:
 		StrVec(): elements(nullptr), first_free(nullptr), cap(nullptr) {}
+        StrVec(initializer_list<string> lst);
         StrVec(const StrVec&);
         StrVec& operator=(const StrVec&);
         ~StrVec();
@@ -46,6 +62,14 @@ class StrVec {
         string *cap;    //指向数组尾后位置的指针
 
 };
+
+StrVec::StrVec(initializer_list<string> lst)
+{
+    for (auto beg = lst.begin(); beg != lst.end(); ++beg)
+    {
+        push_back(*beg);
+    }
+}
 
 void StrVec::push_back(const string &s)
 {

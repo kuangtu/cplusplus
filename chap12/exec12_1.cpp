@@ -30,7 +30,7 @@ class StrBlob {
 	public:
 		typedef vector<string>::size_type size_type;
 		StrBlob();
-		StrBlob(initializer_list<string> il);
+		//StrBlob(initializer_list<string> il);
 		size_type size() const { return data->size(); }
 		bool  empty() const { return data->empty(); }
 
