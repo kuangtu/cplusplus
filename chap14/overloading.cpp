@@ -14,6 +14,7 @@ class Sales_data {
         Sales_data(string isbn, double price): m_Isbn(isbn), m_Price(price) { }
         string getIsbn() const { return m_Isbn; }
         double getPrice() const {return m_Price; }
+		void print() const;
     private:
         string m_Isbn;
         double m_Price;
