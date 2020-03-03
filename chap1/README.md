@@ -38,3 +38,36 @@ main(int argc, char *argv[])
 乘法运算符号计算和并打印。
 [代码参见](exec1_4.cpp)
 
+## 练习1.5
+在每行打印运算对象。
+```cpp
+#include <iostream>
+
+int
+main(int argc, char *argv[]) 
+{
+
+	std::cout << "Enter two number:" << std::endl;
+	int v1 = 0, v2 = 0;
+	std::cin >> v1 >> v2;
+	std::cout << "The mul of ";
+	std::cout << v1;
+	std::cout << " and ";
+	std::cout << v2;
+	std::cout << " is ";
+	std::cout << v1 * v2;
+	std::cout << std::endl;
+
+	return 0;
+
+}
+```
+
+## 练习1.6
+运算符号"<<" 左侧少了std::cout运算对象。
+```bash
+test.cpp:11:9: error: expected primary-expression before ‘<<’ token
+         << " and " << v2;
+```
+
+删除语句尾部的分号。
