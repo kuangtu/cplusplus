@@ -92,7 +92,7 @@ test.cpp: In function ‘int main(int, char**)’:
 test.cpp:17:4: error: expected primary-expression before ‘/’ token
    */
 ```
-## 练习１．８
+## 练习1.8
 如下注释那条语句是正确的：
 ```cpp
 	std::cout << "/*";
