@@ -191,5 +191,82 @@ for (int i = -100; i <= 100; ++i)
 
 ##练习1.14
 > 比较for和while的优缺点：
-（１）while语句仅包含条件语句，使用方便和直观；
-（２）for语句
+>
+>（１）while语句仅包含条件语句，使用方便和直观；
+>
+>（２）for语句
+
+##练习1.15
+> 编译类型错误，编写多了就见得多了。^_^
+
+##练习1.16 
+> 从 cin读取一组数，输出其和。
+> 
+> [代码参见exec1_16](exec1_16.cpp)
+
+##练习1.17
+如下程序输入所有相等的值、没有重复值，输出结果是什么？
+```cpp
+int
+main(int argc, char *argv[]) 
+{
+	
+	int currVal = 0, val = 0;
+	if (std::cin >> currVal)
+	{
+		int icnt = 1;
+		while(std::cin >> val)
+		{
+			if (val == currVal)
+			{
+				icnt++;
+			}
+			else
+			{
+				std::cout << currVal << "occurs " << icnt << " times" << std::endl;
+
+				currVal = val;
+				icnt = 1;
+			}
+		}
+
+		std::cout << currVal << "occurs " << icnt << " times" << std::endl;
+
+	}
+
+	return 0;
+
+}
+```
+
+>所有值相等，结果是该值的数目。
+>
+>所有值不同，输入回车之后会打印各数字的频次。
+
+##1.18
+>编译和运行本节程序，输入不同的值以及输入相同的值。
+>
+>**需要注意的时候，停止输入之后，会打印最后的一个数字所出现的频次。**
+>
+>[代码参见exec1_17](exec1_17.cpp)
+
+>运行结果：
+
+```cpp
+moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ ./exec1_17.exe 
+1 2 3 4
+1occurs 1 times
+2occurs 1 times
+3occurs 1 times
+4occurs 1 times
+moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ ./exec1_17.exe 
+1 1 1 1
+1occurs 4 times
+```
+
+## 练习1.19
+[参见参见exec1_11](exec1_11.cpp)
+
+
+
+
