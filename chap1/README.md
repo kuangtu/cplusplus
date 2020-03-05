@@ -36,7 +36,7 @@ main(int argc, char *argv[])
 ```
 ## 练习1.4
 乘法运算符号计算和并打印。
-[代码参见](exec1_4.cpp)
+[代码参见exec1_4.cpp](exec1_4.cpp)
 
 ## 练习1.5
 在每行打印运算对象。
@@ -105,3 +105,7 @@ test.cpp:17:4: error: expected primary-expression before ‘/’ token
 ```cpp
 std::cout << /*  "*/" */";
 ```
+
+##　练习1.9
+将50到100的数字相加。
+[代码参见exec1_9](exec1_9.cpp)
