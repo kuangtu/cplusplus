@@ -265,8 +265,15 @@ moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ ./exec1_17.
 ```
 
 ## 练习1.19
-[参见参见exec1_11](exec1_11.cpp)
+[代码参见exec1_11](exec1_11.cpp)
 
 
+## 练习1.20
+<读取一组销售记录，将每条记录打印到标准输出上。
 
+[代码参见exec1_20](exec1_20.cpp)
 
+## 练习1.21
+<读取两个ISBN相同的对象，输出他们的和。
+<
+[代码参见exec1_21](exec1_21.cpp)
