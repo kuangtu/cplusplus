@@ -1,0 +1,7 @@
+isbn-1 1 22
+isbn-1 2 45
+isbn-2 2 3
+isbn-2 3 1
+isbn-3 3 2
+isbn-4 2 1
+isbn-4 22 1

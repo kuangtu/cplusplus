@@ -13,7 +13,8 @@ main(int argc, char *argv[])
 	{
 		if (book1.isbn() == book2.isbn())
 		{
-			break;
+			book1 += book2;
+			std::cout << book1 << std::endl;
 		}
 		else
 		{
@@ -22,7 +23,7 @@ main(int argc, char *argv[])
 		}
 	}
 
-	std::cout << book1 + book2 << std::endl;
+	std::cout << book1 << std::endl;
 
 	return 0;
 
