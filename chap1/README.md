@@ -267,13 +267,44 @@ moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ ./exec1_17.
 ## 练习1.19
 [代码参见exec1_11](exec1_11.cpp)
 
-
 ## 练习1.20
-<读取一组销售记录，将每条记录打印到标准输出上。
-
+> 一组销售记录，将每条记录打印到标准输出上。
+>
 [代码参见exec1_20](exec1_20.cpp)
 
 ## 练习1.21
-<读取两个ISBN相同的对象，输出他们的和。
-<
+>取两个ISBN相同的对象，输出他们的和。
+>
 [代码参见exec1_21](exec1_21.cpp)
+
+## 练习1.22
+>读取多个具有相同ISBN的销售记录，输出所有记录的和。
+>
+[代码参见exec1_22](exec1_22.cpp)
+
+## 练习1.23
+>读取多条销售记录，并统计每个ISBN（每本书）有几条销售记录。
+>
+[代码参见exec1_23](exec1_23.cpp)
+
+## 练习1.24
+> 通过文件重定向读取销售记录。
+```bash
+moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ cat salesbook.txt 
+isbn-1 1 22
+isbn-1 2 45
+isbn-2 2 3
+isbn-2 3 1
+isbn-3 3 2
+isbn-4 2 1
+isbn-4 22 1
+moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ ./exec1_23.exe < salesbook.txt 
+isbn-1count is 2
+isbn-2count is 2
+isbn-3count is 1
+isbn-4count is 2
+moxuansheng@kuangtu:/mnt/home2/dev-workspace/github/cplusplus/chap1$ 
+```
+
+## 练习1.25
+[代码参见exec1_25](exec1_24.cpp)
