@@ -40,6 +40,25 @@ main(int argc, char *argv[])
 ```
 ## 勿混用带符号和无符号类型
 
+##指针
+
+###空指针
+> 不指向任何对象，可以通过nullptr,0, NULL初始化。
+
+###初始化和对const的引用
+> 通常，引用类型必须和其引用对象的类型一致。但是：初始化常量引用，允许用任意表达式作为初始值。
+
+###顶层const
+> 顶层const表示指针本身是个常量，底层const表示指针所指向的对象是一个常量。
+> const int *const p3 = p2;	//右边的是顶层const，左边的是底层const
+
+```cpp
+int i = 42;
+const int &r1 = i; //允许将常量引用绑定到一个普通的int对象上
+```
+
+###const指针
+指针本身是常量，常量指针必须初始化。把*放在const关键字之前用以说明指针是一个常量. int *const curErr = *errNumb;
 
 ## 练习2.1
 > int、long、short等类型的区别？无符号、有符号数的区别？float和double的区别？
@@ -234,3 +253,171 @@ j为100。
 	std::cout << i << " " << ri << std::endl;
 ```
 > 得到结果为10，10,ri作为引用，赋值10.
+
+## 练习2.18
+> 编写代码分别更改指针的值和指针所指向的对象的值。
+
+```cpp
+
+	int i = 8, *j = &i;
+	std::cout << "before modify value " << i << std::endl;
+	*j = 10;
+	std::cout << "after modify value" << i << std::endl;
+
+	int k = 12;
+	j = &k;
+	std::cout << "after modify pointer" << *j << std::endl;
+
+```
+
+## 练习2.19
+> 指针和引用的主要区别：
+> （1）指针是一个对象，引用不是对象没有实际地址；
+> （2）不能定义指向引用的指针；
+> （3）引用是对象的别用，访问它就是访问对象，指针通过解引用符访问对象；
+> （4）引用定义时必须初始化。
+可以参见[C++ FAQ](http://www.parashift.com/c%2B%2B-faq-lite/refs-vs-ptrs.html)
+
+
+## 练习2.20
+> 代码作用：
+
+```cpp
+int i = 42;
+int *p1 = &i;
+*p1 = *p1 *  *p1;
+```
+>定义了指针p1指向i，然后将i的值平方。
+
+## 练习2.21
+> 定义是否有非法：
+```cpp
+int i = 0;
+(a) double *p = &i;
+(b) int *ip = i;
+(c) int *p = &i;
+```
+> (a)错误，指针类型和指向的对象类型不匹配；
+> (b)错误，
+> (c)正确，p为i的指针。
+
+## 练习2.22
+p是int型指针，说明代码含义：
+```cpp
+(1)if (p) //
+(2)if (*p) //
+```
+
+>(1)检查指针是否为空指针；
+>(2)根据p指向的int对象的值，进行判断
+>
+>
+## 练习2.23
+>能否判断给定的指针p，指向了一个合法的对象。
+>不能判断。
+
+## 练习2.24
+>为什么p合法而lp非法？
+
+```cpp
+int i = 42; void *p = &i; long *lp = &i;
+```
+> p为 void*指针类型，可以存放任意对象的地址，lp指向的对象类型和指针类型不匹配。
+
+## 练习2.25
+> 说明以下变量的类型：
+
+```cpp
+(1)int *ip, i, &r = i;
+(2) int i, *ip = 0;
+(3)int *ip, ip2.
+```
+> （1）ip为int类型指针，i为int类型，r为int类型对象i的引用；
+> （2）i为int类型，ip为int类型的空指针；
+> （3）ip为int类型指针，ip2为int类型对象。
+
+## 练习2.26
+下列语句是否合法：
+
+```cpp
+(1)const int buf; //不合法，常量需要初始化
+(2)int cnt; //合法
+(3) const int sz = cnt; //合法，讲cnt的值赋给sz
+(4)++cnt; ++sz; //不合法，sz是常量。
+```
+
+## 练习2.27
+> 下列那些初始化是合法的：
+
+```cpp
+(1) int  i = -1, &r = 0; //非法，引用的是对象，不能是字面常量
+(2) int *const p2 = &i2;	//合法，常量指针
+(3)const int i = -1, &r = 0;  //合法，const int &r常量引用，不要求类型一致。
+(4)const int *const p3 = &i2; //合法
+(5)const int *p1 = &i2;	//合法，指向常量的指针
+(6)const int &const r2;  //非法，无常量引用
+(7)const int i2 = i ,&r = i; //合法，r为i的引用
+```
+
+## 练习2.28
+>说明下列定义：
+
+```cpp
+(1)int i, *const cp; //i是int类型整数，cp是指向int类型的常量指针，不合法，常量指针需要初始化；
+(2)int *p1, *const p2;	//p1是int类型的指针，p2是指向int类型的常量指针，不合法，常量指针需要初始化；
+(3)const int ic, &r = ic; //ic是int型常量，r是ic的引用，不合法，ic需要初始化；
+(4)const int *const p3;	//p3是指向int型常量的常量指针， 不合法，需要初始化；
+(5)const int *p; //p是指向int型常量的指针
+```
+> **为便于练习2.29的使用，修改为合法的定义。
+
+```cpp
+	int a = 20;
+	int i , *const p = &a;	
+
+	int *p1, *const p2 = &a;
+
+	const int ic = 20, &r = ic;
+
+	const int *const p3 = &a;
+
+	const int *p4;
+```
+
+## 练习2.29
+> 有练习2.28中的定义，下面哪些语句是合法的？
+
+```cpp
+(a)i = ic; 		//合法，将ic的值赋给i
+(b)p1 = p3; 	//不合法，p3是指向int型常量的指针
+(c)p1 = &ic;	//不合法，ic是指向int型常量
+(d)p3 = &ic;	//不合法，p3是常量指针
+(e)p2 = p1;		//不合法，p2是常量指针
+(f)ic = *p3;	//不合法，ic是int型常量
+
+
+```
+## 练习2.30
+> 说明对象是被声明成了顶层const还是底层const？
+
+```cpp
+const int  v2 = 0; 	int v1= v2;	//底层const
+int *p1 = &v1, &r1 = v1;	
+const int *p2 = &v2, *const p3 = &i, &r2 = v2;	//p2是底层const, p3是顶层const，r2是底层const。
+```
+
+## 练习2.31
+> 基于练习2.30中的声明，下列哪些是合法的？
+
+```cpp
+r1 = v2;			
+p1 = p2; p2 = p1;
+p1 = p3; p2 = p3;
+```
+
+## 练习2.24
+> 下列代码是否合法？
+```cpp
+int null = 0, *p = null;
+```
+> 不正确，p是指针，通过取址符 &null，或者nullptr初始化。
