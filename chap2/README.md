@@ -101,3 +101,136 @@ month 和 day的数据类型不同：十进制和八进制。
 ##练习2.8
 > 
 [代码参见exec2_8](exec2_8.cpp)
+
+
+##　练习2.9
+> 判断定义是否正确：
+
+```cpp
+	(1)std::cin >> int input_value;	
+	(2)int i = {3.14};
+	(3)double salary = wage = 9999.99;
+	(4)int j = 3.14;
+```
+- （１）错误。>>运算符右边是变量；
+- （２）错误，转换未执行；
+- （３）wage未定义；
+- （４）正确。
+
+##　练习2.10
+> 变量的初始化:
+
+```cpp
+	int local_int;
+	std::string local_str;
+
+	std::cout << global_str << std::endl;
+	std::cout << global_int << std::endl;
+
+	std::cout << local_int << std::endl;
+	std::cout << local_str << std::endl;
+
+```
+
+## 练习2.11
+```cpp
+	(1)extern int ix = 1024;
+	(2)int iy;
+	(3)extern int iz;
+
+```
+- （1）定义。如果在函数体内，错误；
+- （2）定义。
+- （3）声明。
+
+## 练习2.12
+> 命名是否错误。
+
+```cpp
+	(1)int double = 3.14;
+	(2)int _;
+	(3)int catch-22;
+	(4)int i_or_2 = 1;
+	(5)double Double = 3.14;
+
+```
+- （1）错误，标识符不能用关键字；
+- （2）正确；
+- （3）错误，非字母、数字、下划线。
+- （4）正确；
+- （5）正确。
+
+
+## 练习2.13
+> j的值为多少？
+
+```cpp
+int i = 42;
+
+int
+main(int argc, char *argv[]) 
+{
+	int i = 100;
+
+	int j = i;
+
+	std::cout << j << std::endl;
+	return 0;
+}
+```
+j为100。
+
+## 练习2.14
+> 程序是否合法？输出什么？
+
+```cpp
+	int i = 100, sum = 0;
+	for (int i = 0; i != 10; i++)
+		sum += i;
+
+	std::cout << i << " " << sum << std::endl;
+```
+输出时i为全局范围的定义，值为100，sum的和为局部范围内定义的i，从0到9求和，值为45.
+
+## 练习2.15
+引用相关定义是否合法？
+
+```cpp
+	（1）int ival = 1.01;
+	（2）int &rval1 = 1.01;
+	（3）int &rval2 = ival;
+	（4）int &rval3;
+```
+-（1）正确；
+-（3）错误，引用类型的初始值必须是对象；
+-（3）正确；
+-（4）错误，引用必须初始化。
+
+## 练习2.16
+> 赋值是否合法。
+
+```cpp
+	int i = 0, &r1 = i;
+	double d = 0, &r2 = d;
+
+	（1）r2 = 3.14159;
+	（2）r2 = r1;
+	（3）i = r2;
+	（4）r1 = d;
+```
+> r1引用绑定到了i，r2引用绑定到了d；
+- （1）正确，3.14159赋值给r2指向的对象i;
+- （2）正确，将r1指向的对象i的值，赋给r2指向的对象d；
+- （3）正确，将r2指向的对象d的值，赋给i；
+- （4）正确，将d的值赋给r1指向的对象。
+
+
+## 练习2.17
+> 运行结果：
+
+```cpp
+	int i, &ri = i;
+	i  = 5; ri= 10;
+	std::cout << i << " " << ri << std::endl;
+```
+> 得到结果为10，10,ri作为引用，赋值10.
