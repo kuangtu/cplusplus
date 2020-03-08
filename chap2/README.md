@@ -40,15 +40,15 @@ main(int argc, char *argv[])
 ```
 ## 勿混用带符号和无符号类型
 
-##指针
+## 指针
 
-###空指针
+### 空指针
 > 不指向任何对象，可以通过nullptr,0, NULL初始化。
 
-###初始化和对const的引用
+### 初始化和对const的引用
 > 通常，引用类型必须和其引用对象的类型一致。但是：初始化常量引用，允许用任意表达式作为初始值。
 
-###顶层const
+### 顶层const
 > 顶层const表示指针本身是个常量，底层const表示指针所指向的对象是一个常量。
 > const int *const p3 = p2;	//右边的是顶层const，左边的是底层const
 
@@ -57,7 +57,7 @@ int i = 42;
 const int &r1 = i; //允许将常量引用绑定到一个普通的int对象上
 ```
 
-###const指针
+### const指针
 指针本身是常量，常量指针必须初始化。把*放在const关键字之前用以说明指针是一个常量. int *const curErr = *errNumb;
 
 ## 练习2.1
@@ -415,9 +415,200 @@ p1 = p2; p2 = p1;
 p1 = p3; p2 = p3;
 ```
 
-## 练习2.24
+## 练习2.32
 > 下列代码是否合法？
 ```cpp
 int null = 0, *p = null;
 ```
 > 不正确，p是指针，通过取址符 &null，或者nullptr初始化。
+
+## 练习2.33
+> 判断运行结果
+
+```cpp
+	int i = 0, &r = i;
+	auto a = r;
+	const int ci = i, &cr = ci;
+	auto b = ci;
+	auto c = cr;
+	auto d = &i;
+	auto e = &ci;
+	auto &g = ci;
+	a = 42;  //a是整型，赋值42
+	b = 42; //b是整型，赋值42
+	c = 42; //c是整型，赋给42
+	d = 42; //d是指针，不能字面值赋值
+	e = 42; //e是指针，不能字面值赋值
+	g = 42; //g是常量引用，不能修改
+```
+
+## 练习2.34
+> [代码参见exec2_34](exec2_34.cpp)
+
+## 练习2.35
+> 判断下列定义推断出的类型：
+
+```cpp
+	const int i = 42;	//i为整型常量
+	auto j = i;			//j为整型，此时忽略了顶层的const
+	const auto &k = i;  //k为整型常量i的引用
+	auto *p = &i;		//p为指向整型常量i的指针
+	const auto j2 = i;  //j2为整型常量
+	const auto &k2 = i; //k2为常量整型i的引用
+
+```
+
+## 练习.2.36
+> 指出变量类型和各自的值.
+
+```cpp
+	int a = 3, b = 4;
+	decltype(a) c = a;		//c为整型
+	decltype((b)) d = a;   //d为整型引用
+	++c;				   //c的初始值为3，对于c++，结果为4
+	++d;				   //d为a的引用，a++，结果为4
+
+	std::cout << "C " << c <<std::endl;
+	std::cout << "D " << d << std::endl;
+
+```
+
+## 练习2.37
+> 赋值会产生引用的.
+
+```cpp
+	int a = 3, b = 4;		
+	decltype(a) c = a;			//c为整型
+	decltype(a = b) d = a;		//d为整型a的引用
+
+```
+
+## 练习2.38
+> 指出decltype和auto的差异，并举例。
+> decltype可以使用表达式，且结果类型和表达式密切相关。
+
+```cpp
+	int a = 1, &r = a;
+
+	auto b = a;			//b是整型
+	decltype(b) b1 = a; //b1是整型
+
+	auto c = r;			//c是整型,r是整型a的别名
+	decltype(r) c1 = a; //c1是引用
+```
+> [可以参见链接](https://stackoverflow.com/questions/12084040/decltype-vs-auto)
+
+## 练习2.39
+> 语法错误，编译结果。
+
+```cpp
+struct FOO { /* empty */ } 
+
+int
+main(int argc, char *argv[]) 
+{
+	return0;
+}
+```
+> 编译结果。
+
+```bash
+g++ -std=c++0x -I.. -Wall -Wextra -Wconversion -Wpointer-arith -Wshadow -Wno-unused-parameter -ggdb  -c test.cpp -o test.o
+test.cpp:3:26: error: expected ‘;’ after struct definition
+ struct FOO { /* empty */ } 
+
+```
+
+
+## 练习2.40
+> 编写销售数据类。
+
+```cpp
+	struct Sales_data {
+		std::string bookNO;
+		std::string bookName;
+		unsigned units_sold = 0;
+		double price = 0.0;
+		double revenue = 0.0;
+	};
+```
+
+## 练习2.41
+
+> 1.5.1样例重写。
+
+```cpp
+struct Sales_data {
+	std::string bookNo;
+	std::string bookName;
+	unsigned units_sold = 0;
+	double price = 0.0;
+	double revenue = 0.0;
+};
+
+int
+main(int argc, char *argv[]) 
+{
+
+	struct Sales_data data1;
+
+	std::cout << "Please Input data1's bookNo、units_sold、price" << std::endl;
+	std::cin >> data1.bookNo >> data1.units_sold >> data1.price;
+	data1.revenue = data1.units_sold * data1.price;
+	std::cout << data1.bookNo << data1.revenue << data1.price << std::endl;
+
+	return 0;
+
+}
+```
+> 1.5.2样例重写。
+
+```cpp
+struct Sales_data {
+	std::string bookNo;
+	std::string bookName;
+	unsigned units_sold = 0;
+	double price = 0.0;
+	double revenue = 0.0;
+};
+
+int
+main(int argc, char *argv[]) 
+{
+
+	struct Sales_data data1, data2;
+
+	std::cout << "Please Input data1's bookNo、units_sold、price" << std::endl;
+	std::cin >> data1.bookNo >> data1.units_sold >> data1.price;
+
+	std::cout << "Please Input data2's bookNo、units_sold、price" << std::endl;
+	std::cin >> data2.bookNo >> data2.units_sold >> data2.price;
+
+
+	if (data1.bookNo == data2.bookNo)
+	{
+		
+		data1.revenue = data1.units_sold * data1.price;
+		data2.revenue = data2.units_sold * data2.price;
+
+		unsigned total_sold = data1.units_sold + data2.units_sold;
+		double total_revenue = data1.revenue + data2.revenue;
+
+		std::cout << "the BookNo " << data1.bookNo << "total sold is " ;
+		std::cout << total_sold << "total revenue is " << total_revenue ;
+		std::cout << "the avarage price is " << total_revenue / total_sold << std::endl;
+			
+	}
+	else
+	{
+		std::cout << "Please input same bookNo " << std::endl;
+	}
+
+	return 0;
+
+}
+
+```
+
+
+
