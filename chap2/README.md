@@ -52,6 +52,17 @@ main(int argc, char *argv[])
 > 顶层const表示指针本身是个常量，底层const表示指针所指向的对象是一个常量。
 > const int *const p3 = p2;	//右边的是顶层const，左边的是底层const
 
+### 指针、常量和类型别名
+>需要注意类型别名指代的复合类型或常量
+```cpp
+tyepdef char *pstring;
+(1)const pstring cstr = 0;
+(2)const pstring *ps;
+```
+>(1)**是常量指针；**
+>(2)ps是一个指针，它指向的对象是指向char的常量指针
+
+
 ```cpp
 int i = 42;
 const int &r1 = i; //允许将常量引用绑定到一个普通的int对象上
@@ -609,6 +620,70 @@ main(int argc, char *argv[])
 }
 
 ```
+> 1.6样例重写.
+
+```cpp
+struct Sales_data {
+	std::string bookNo;
+	std::string bookName;
+	unsigned units_sold = 0;
+	double price = 0.0;
+	double revenue = 0.0;
+};
+
+int
+main(int argc, char *argv[]) 
+{
+
+	Sales_data data1;
+
+		
+	std::cout << "Please Input data's bookNo、units_sold、price" << std::endl;
+
+	if (std::cin >> data1.bookNo >> data1.units_sold >> data1.price)
+	{
+		data1.revenue = data1.units_sold * data1.price;
+		Sales_data tmp;
+		
+		while(std::cin >> tmp.bookNo >> tmp.units_sold >> tmp.price)
+		{
+			if (tmp.bookNo == data1.bookNo)
+			{
+				//利润增加到之前那本书中
+				tmp.revenue = tmp.units_sold * tmp.price;
+				data1.revenue += tmp.revenue;
+				data1.units_sold += tmp.units_sold;
+			}
+			else
+			{
+				//打印之前一本书
+				std::cout << "the BookNo " << data1.bookNo << "total sold is " ;
+				std::cout << data1.units_sold << "total revenue is " << data1.revenue ;
+				std::cout << "the avarage price is " << data1.revenue / data1.units_sold << std::endl;
+
+				data1.bookNo = tmp.bookNo;
+				data1.revenue = tmp.revenue;
+				data1.price = tmp.price;
+				data1.units_sold = tmp.units_sold;
+			}
+		}
+
+		//输出最后一本书
+		std::cout << "the BookNo " << data1.bookNo << "total sold is " ;
+		std::cout << data1.units_sold << "total revenue is " << data1.revenue ;
+		std::cout << "the avarage price is " << data1.revenue / data1.units_sold << std::endl;
+	}
+	else
+	{
+		std::cerr << "No Data input." << std::endl;
+	}
+	return 0;
+}
+
+```
 
 
+## 练习2.42
+> 通过头文件重写2.6.2节样例。
 
+>[代码参见exec_2_42](exec2_42.cpp)
