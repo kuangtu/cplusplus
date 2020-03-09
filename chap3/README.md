@@ -75,11 +75,49 @@ main(int argc, char *argv[])
 >
 > getline读取空白字符串，直到遇到换行符为止，**换行符也被读取**
 
-##　练习3.4
+## 练习3.4
 > 比较字符串即字符串的长度.
 >
 > [代码参见exec3_4](exec3_4.cpp)
 >
 
-##　练习3.5
+## 练习3.5
 > 连接字符串。
+>
+[代码参见exec3_5](exec3_5.cpp)
+
+
+## 练习3.6
+>　for语句将字符串内的所有字符用X代替。
+>
+> [代码参见exec_3_6](exec3_6.cpp)
+
+## 练习3.7
+> 将3.6中的循环控制变量修改为char。
+
+```cpp
+#include <iostream>
+#include <cctype>
+
+using std::endl;
+using std::cin;
+using std::cout;
+using std::string;
+
+int
+main(int argc, char *argv[]) 
+{
+
+	string s("hello world");
+	for (char c: s)
+	{
+		c = toupper(c);
+	}
+
+	cout << s << endl;
+	return 0;
+
+}
+```
+>ｃ是char类型的变量，不会修改string中的内容。
+
