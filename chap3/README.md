@@ -286,10 +286,49 @@ for (int i = 0; i != 10; i++) v1.push_back(42);
 > [代码参见exec3_24_1](exec3_24_1.cpp)
 > [代码参见exec3_24_2](exec3_24_2.cpp)
 
-## 练习3.5
+## 练习3.25
 >迭代器重写分数统计。
 > [代码参见exec3_25](exec3_25.cpp)
 
-## 练习3.6
+## 练习3.26
 > 二分查找使用的是 mind = beg + (end - beg) / 2，而非mid = (beg + end) / 2.
 > 因为beg + end 如果值很大时，存在溢出的情况。
+
+## 练习3.27
+>以下定义哪些是非法的？
+
+```cpp
+	unsigned buf_size = 1024;
+    
+	int ia[buf_size];			//非法，buf_size应该是常量
+	int ia1[4 * 7 - 14];		//合法，计算得到是字面常量
+	int ia2[txt_size()];		//非法，txt_size返回应该是常量
+	char st[11] = "fundamental";	//非法，字符串超过了存储空间
+  
+```
+
+## 练习3.28
+> 数组中的元素值是什么？
+
+```cpp
+
+string sa[10];
+int ia[10];
+
+int
+main(int argc, char *argv[]) 
+{
+	string sa2[10];
+	int ia2[10];
+	
+    return 0;
+}
+
+```
+sa、sa2是字符串string对象，默认为空。
+ia在函数之外定义，初始化为0，ia2在函数内部定义，值是未定义。
+
+
+## 练习3.29
+>相比与vector，数组有哪些确定。
+> - 数组长度固定，不能随意向数组中增加元素。
