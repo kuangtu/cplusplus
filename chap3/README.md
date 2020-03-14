@@ -44,6 +44,14 @@ string *p = &nums[0];
 string *p = nums. //编译器自动替换
 ```
 
+### 使用数组初始化vector对象
+> 允许使用数组来初始化vector对象，需要指明要拷贝区域的首元素地址和尾后地址。
+
+```cpp
+	int int_arr[] = {0, 1, 2, 3, 4, 5};
+	vector<int> ivec(begin(int_arr), end(int_arr));
+```
+
 ## 练习3.1
 > 重写1.4.1节的练习。
 >
@@ -379,13 +387,13 @@ int ia[array_size];
 int ib[array_size];
 for (size_t ix = 0; ix < array_size; ix++)
     ia[ix] = ix;
-
 for (size_t ix = 0; ix < array_size; ix++)
     ib[ix] = ia[ix]
 ```
 
 > 通过vector重写程序。
-> 
+
+
 ```cpp
 
 ```
@@ -394,3 +402,88 @@ for (size_t ix = 0; ix < array_size; ix++)
 ## 练习 3.33
 > 如果scores不初始化会发生什么？
 > scores未初始化，数值未定义。
+
+## 练习3.34
+>p1和p2指向同一个数组中的元素，如下程序什么功能？
+
+```cpp
+p1 += p2 - p1
+```
+> 计算p2和p1检查的差值，然后将p1指向p2，指向同一个数组中的同一个元素。
+
+## 练习3.35
+> 编写一段程序，利用指针将数组中的元素置为0.
+> [代码参见exec3_35](exec3_35.cpp)
+
+## 练习3.36
+> 编写一段程序，比较两个数组是否相等，比较两个vector是否相等。
+> [代码参见exec3_36_1](exec3_36_1.cpp)
+> [代码参见exec3_36_2](exec3_36_2.cpp)
+
+## 练习3.37
+> 下列程序的输出结果是什么？
+
+```cpp
+	const char ca[] = {'h', 'e', 'l', 'l', 'o'};
+	const char *cp = ca;
+	while(*cp)
+	{
+		cout << *cp << endl;
+		++cp;
+	}
+```
+输出数组ca中的每个元素。
+
+## 练习3.38
+> 两个指针相加为什么没有意义？
+> 相加之后的指针地址未定义.
+
+## 练习3.39
+> 编写程序比较两个string对象，以及比较两个C风格字符串的内容。
+> [代码参见exec3_39_1](exec3_39_1.cpp)
+> [代码参见exec3_39_2](exec3_39_2.cpp)
+
+## 练习3.40
+>定义两个字符串数组用字符串字面值初始化他们，再定义一个字符数组存放前两个数组连接后的结果。
+
+```cpp
+	const char ca1[] = "hello ";
+	const char ca2[] = "world"; 
+
+	const size_t len1 = strlen(ca1);
+	const size_t len2 = strlen(ca2);
+
+	const size_t len = len1 + len2 + 1;
+
+	char ca3[len];
+
+	strcpy(ca3, ca1);
+	strcat(ca3, ca2);
+
+```
+## 练习3.41
+>通过整型数组初始化一个vector对象.
+>
+
+```cpp
+	int int_arr[] = {0, 1, 2, 3, 4, 5};
+	vector<int> ivec(begin(int_arr), end(int_arr));
+
+	auto beg = ivec.begin();
+	auto end = ivec.end();
+
+	while(beg != end)
+	{
+		cout << *beg << " ";
+		beg++;
+	}
+	cout << endl;
+```
+
+## 练习3.42
+> 将一个含有整型元素的vector对象拷贝给一个整型数组。
+
+```cpp
+
+
+```
