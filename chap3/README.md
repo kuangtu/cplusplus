@@ -484,6 +484,75 @@ p1 += p2 - p1
 > 将一个含有整型元素的vector对象拷贝给一个整型数组。
 
 ```cpp
+	vector<int> ivec(5, 1);
+	int int_arr[5];
+	
+
+	for (auto p = begin(int_arr); p != end(int_arr); p++)
+	{
+		*p = ivec[p - begin(int_arr)];
+	}
+
+	return 0;
+
+```
+
+## 练习3.43
+> 三个不同版本输出ia的每个元素。
+
+```cpp
+	for (auto &row : ia)
+	{
+		for(auto col : row)
+		{
+			cout <<  col << " ";
+		}
+		cout << endl;
+	}
+
+	cout << "...";
+
+	for (auto p = ia; p != ia + 3; p++)
+	{
+		for (auto q = *p; q != *p + 4; ++q)
+		{
+			cout << *q << " ";
+		}
+		cout << endl;
+	}
+
+	cout << "...";
+
+```
+
+## 练习3.44
+> 通过类型别名来替代循环控制变量的类型。
+> [代码参见exec3_44](exec3_44.cpp)
 
 
+## 练习3.45
+> 通过auto关键字改写3.43。
+
+```cpp
+	for (auto &row : ia)
+	{
+		for(auto col : row)
+		{
+			cout <<  col << " ";
+		}
+		cout << endl;
+	}
+
+	cout << "...";
+
+	for (auto p = ia; p != ia + 3; p++)
+	{
+		for (auto q = *p; q != *p + 4; ++q)
+		{
+			cout << *q << " ";
+		}
+		cout << endl;
+	}
+
+	cout << "...";
 ```
