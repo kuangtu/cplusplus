@@ -198,6 +198,35 @@ if (i == 1024)
 > 说明表达式何种含义？
 
 ```cpp
-ptr != 0 && *ptr++		//
+ptr != 0 && *ptr++		//正确，ptr遍历int指针
+
+ival++ && ival			//
+
+vec[ival++] <= vec[ival] 
 
 ```
+
+## 练习4.21
+> 使用条件运算符从vector<int>中找到哪些元素的值是奇数，然后将这些奇数值翻倍。
+
+```cpp
+
+
+```
+
+## 练习4.22
+> 通过条件语句划分成绩。
+
+```cpp
+	int grade = 75;
+
+	string finalgrade = (grade > 90) ? "high pass" : (grade < 60) ? "fail" : "pass";
+
+	cout <<finalgrade << endl;
+
+	finalgrade = (grade > 90) ? "high pass" : (grade < 60) ? "fail" : (grade >= 60 && grade <=75) ? "low pass" : "pass";
+
+	cout <<finalgrade << endl;
+
+```
+
