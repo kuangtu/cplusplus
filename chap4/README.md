@@ -222,11 +222,22 @@ vec[ival++] <= vec[ival]
 
 	string finalgrade = (grade > 90) ? "high pass" : (grade < 60) ? "fail" : "pass";
 
-	cout <<finalgrade << endl;
+	cout << finalgrade << endl;
 
 	finalgrade = (grade > 90) ? "high pass" : (grade < 60) ? "fail" : (grade >= 60 && grade <=75) ? "low pass" : "pass";
 
-	cout <<finalgrade << endl;
+	cout << finalgrade << endl;
 
 ```
+
+## 练习4.23
+> 修改优先级。
+
+```cpp
+	string s= "word";
+	string p1 = s + s[s.size() - 1] == 's' ? "" : "s";
+	string p1 = s + (s[s.size() - 1] == 's' ? "" : "s");
+```
+> 条件运算符的优先级低于+，判断s.size() - 1 字符串最后一个字符是否为's'，如果是，保持不变，如果不是，连接字符串"s"。
+
 
