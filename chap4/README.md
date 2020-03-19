@@ -258,8 +258,25 @@ vec[ival++] <= vec[ival]
 
 ## 练习4.28
 > 编写一段程序，输出每一种内置类型所占空间的大小。
+> [代码参见exec4_28](exec4_28.cpp)
+
+## 练习4.29
+> 推断下面代码的输出结果并说明理由。
+```cpp
+int x[10]; int *p = x;
+cout << sizeof(x)/sizeof(*x) << endl;
+cout << sizeof(p)/sizeof(*p) << endl;
+```
+> - 第一个表达式计算数组x中元素的数目
+> - 第二个表达式存在问题，用指针的大小/指针指向元素的大小。
+
+## 练习4.30
+> 表达式加上适当的括号，与原来含义相同
+> - sizeof运算符的优先级大于"+"
 
 ```cpp
-
-
+sizeof x + y --> sizeof(x) + y
+sizeof p->mem[i] --> sizeof(p->mem[i])
+sizeof a < b --> sizeof(b) < b
+sizeof f() --> sizeof(f())
 ```
