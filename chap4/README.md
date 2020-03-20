@@ -280,3 +280,16 @@ sizeof p->mem[i] --> sizeof(p->mem[i])
 sizeof a < b --> sizeof(b) < b
 sizeof f() --> sizeof(f())
 ```
+
+
+
+## 练习4.31
+> 为什么时候前置的递增运算符，而不是后置的递增运算符。
+
+```cpp
+vector<tint>::size_type cnt = ivec.size();
+
+for (vector<int>::size_type ix = 0; ix != ivec.size(); ++ix, --cnt)
+	ivec[ix] = cnt;
+
+```
