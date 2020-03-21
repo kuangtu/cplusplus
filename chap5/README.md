@@ -252,4 +252,65 @@ constexpr unsigned ival=512, jval=1024, kval=4096;
 
 
 ## 练习5.17
->两个vector对象，检查其中一个是否是另外一个的前缀。
+> 两个vector对象，检查其中一个是否是另外一个的前缀。
+> [代码参见exec5_17](exec5_17.cpp)
+
+## 练习 5.18
+> 说明下列循环的含义，并改正其中的错误。
+
+```cpp
+//增加{}
+(a) do { 
+G        int v1, v2;
+        cout << "Please enter two numbers to sum:" ;
+        if (cin >> v1 >> v2)
+            cout << "Sum is: " << v1 + v2 << endl;
+    }while (cin);
+//变量声明放在了while条件部分 
+(b) int ival;
+    do {
+        // . . .
+    } while (ival = get_response()); 
+//变量声明放在了do部分，while条件部分不再范围之内
+(c) int ival = get_response();
+    do {
+        ival = get_response();
+    } while (ival); 
+```
+
+## 练习5.19
+> do while语句执行下述任务：提示用户输入两个string对象，然后挑出较短的那个并输出。
+> [代码参见exec5_19](exec5_19.cpp)
+
+## 练习5.20
+> 编写程序，从标准输入中读取string对象的序列直到连续出现两个相同的单词，或者所有单词都读完为止。
+> [代码参见exec5_20](exec5_20.cpp)
+
+## 练习5.21
+> 修改练习5.20，找到的重复单词必须以大写开头。
+> [代码参见exec5_21](exec5_21.cpp)
+
+## 练习5.22
+> 改写程序，不使用goto语句。
+
+```cpp
+	int sz;
+	
+	while((sz = getsize()) < 0)
+	{
+
+	}
+
+```
+
+## 练习5.23
+> 编写程序，从标准输入读取两个整数，输出第一个除以第二个数的结果。
+> [代码参见exec5_23](exec5_23.cpp)
+
+## 练习5.24
+> 修改练习5.23，当第二个数为0时抛出异常。
+> [代码参见exec5_24](exec5_24.cpp)
+
+## 练习5.25
+> 修改练习5.25，通过try-catch语法捕获异常。
+> [代码参见exec5_25](exec5_25.cpp)

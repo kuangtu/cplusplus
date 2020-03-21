@@ -5,6 +5,7 @@ using std::cin;
 using std::cout;
 using std::cerr;
 using std::endl;
+using std::runtime_error;
 
 
 int
@@ -14,7 +15,11 @@ main(int argc, char *argv[])
 
     cout << "please input two number:" << endl;
     cin >> a >> b;
-	cout << "the div is:" << static_cast<double>(a)/b << endl;
+    if (b == 0)
+    {
+        throw runtime_error("the divsior is zero.");
+    }
+    cout << "the divsion is:" << static_cast<double>(a)/b << endl;
 
     return 0;
 }
