@@ -43,6 +43,28 @@ ival = pval = 0; 	//不能把指针的值赋给int
 > -　如果运算对象是无符号类型，在左侧插入值为0的二进制位
 > -　如果是带符号类型，在左侧插入符号位的副本或值为0的二进制位
 
+
+## 类型转化
+> - 算数类型之间的隐式转移被设计得经可能避免损失精度
+
+## 隐式转化
+> - 大多数表达式中，比int类型小的整数类型都提升为较大的整数类型
+> - 条件中，非布尔值转换成布尔类型
+> - 初始化过程中，初始值类型转成变量的类型
+> - 赋值语句中，右侧运算对象转换成左侧运算对象的类型
+> - 算数运算或者关系运算的运算对象有多种类型，需要转成同一种类型；
+> - 函数调用时也会发生类型转换。
+
+## 无符号类型的运算对象
+> - 如果一个运算对象是无符号类型，另外一个是带符号类型。其中的无符号类型不小于带符号类型，那么带符号的运算对象转为无符号。此时如果带符号类型为负数，则转为无符号数是会来带负作用。
+> - 带符号类型大于无符号类型，此时转换的结果依赖于机器。如果无符号类型的所有值都能存在该带符号类型中，则无符号类型的运算对象转为带符号类型，如果不能，带符号类型的运算对象转为无符号类型。
+
+```cpp
+假设运算对象是long 和 unsigned int， 且int 和 long的大小相同，则long类型的运算对象转成unsigned int类型，如果long类型占用的空间比int更多，则unsigned int类型的运算对象转成long类型。
+```
+
+
+
 ## 练习4.1
 > 表达式 5+10*20/2的结果是？
 > 105
@@ -293,3 +315,74 @@ for (vector<int>::size_type ix = 0; ix != ivec.size(); ++ix, --cnt)
 	ivec[ix] = cnt;
 
 ```
+> 对于本例中，前置和后置运算没有区别。
+> 根据C++建议（4.5节），除非必要不用后置版本。编译器可能需要额外的优化工作。
+
+## 练习4.32
+> 解析如下循环的含义： 
+
+```cpp
+	constexpr int size = 5;
+	int ia[size] = {1, 2, 3, 4, 5};
+	for (int *ptr = ia, ix = 0; ix != size && ptr != ia + size; ++ix, ++ptr) {/*   */}
+```
+> ptr指向ia的指针，++ptr遍历ia中的元素；
+> ix作为下标计数，也可以遍历ia中的元素。
+
+## 练习 4.33
+> 说明如下表达式的含义：
+
+```cpp
+	someValue ? ++x, ++y : --x, --y;
+```
+> - 逗号优先级最低
+
+```cpp
+可以转化为：(someValue ? ++x, ++y : --x), --y;
+```
+
+
+## 练习 4.34
+> 说明夏磊表达式发生什么样的类型转换：
+
+```cpp
+(1) if(fval) //fval是float类型，转为布尔类型，非0为布尔值true
+(2) dval = fval + ival;	// 右侧表达式， int类型转为float类型，赋值的时候，转为double类型
+(3) dval + ival * cval; //cval整形提升为int类型，然后再转换为double类型
+```
+## 练习 4.35
+> 假设有如下的定义：
+
+```cpp
+char cval; int ival; unsigned int uiu; float fval; double dval;
+//表达式中会发生怎么样的隐式类型转换
+(1) cval = 'a' + 3;	//将'a'提升为int类型，整数类型相加之后，再赋值转为char类型
+(2) fval = ui - ival * 1.0  // ival * 1.0转为float类型，将ui转为float类型
+(3) dval = ui * fval;		//将ui转为float类型，计算之后再转为double类型
+(4) cval = ival + fval + dval; // 加法是左结合, 将ival转为float计算，再将结果转为double进行计算
+```
+## 练习4.36
+> 通过显式转换，将i *= d执行整数类型的乘法，而非浮点类型的乘法。
+
+```cpp
+i *= static_cast<int>(d);
+```
+
+## 练习4.37
+> 用命名的强制类型转换改写下列旧的转换语句。
+
+```cpp
+int i; double d; const string *ps; char *pc; void *pv;
+(1)pv = (void*)ps; // pv = const_cast<void*>(ps)
+(2)i = int(*pc)	   // i = static_cast<int>(*pc)
+(3) pv = &d;	   // i = static_cast(void*)(&d)
+(4) pc = (char*)pv;	//pc = static_cast<char*>(pv)
+```
+
+## 练习3.38
+> 说明下列表达式的含义：
+
+```cpp
+double slope = static_cast<double>(j/i);
+```
+> 将j/i的结果显式转为double。
