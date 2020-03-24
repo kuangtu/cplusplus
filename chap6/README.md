@@ -120,3 +120,27 @@ void f(T)		//参数是T类型
 void f(&T)		//参数是T类型的引用
 ``
 
+## 练习6.14
+> 举例应该是引用类型的例子
+
+```cpp
+string::size_type find_char(const string &s, char c, string::size_type &occurs)
+{
+	auto ret = s.size();
+
+	occurs = 0;
+	for (decltype(ret) i = 0; i != s.size(); ++i)
+	{
+		if (s[i] == c)
+		{
+			if (ret == s.size())
+				ret = i;
+			++occurs;
+		}
+	}
+
+	return ret;
+}
+
+```
+> 通过引用可以变相的返回多个值。
