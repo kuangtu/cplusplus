@@ -27,19 +27,28 @@ isCap(const string &s)
 
 }
 
+void
+StrCap(string &s)
+{
+
+	for (auto &c:s)
+	{
+		if (isupper(c))
+		{
+			c = tolower(c);
+		}
+	}
+
+}
+
+
 int
 main(int argc, char *argv[]) 
 {
 
 	const string s = "hello world";
-	const char* s1 = "test";
-	
-	s1 = "china";
-	printf("%s\n", s1);
 
 	bool res = isCap(s);
-
-	cout << "is contain cap character:" << res << endl;
 
 	cout << "is contain cap character:" << res << endl;
 
