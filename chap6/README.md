@@ -3,6 +3,10 @@
 ##　使用引用避免拷贝
 > 拷贝大的类烈性对应或者容器对象比较低效。
 
+
+## const形参和实参
+> 当用实参初始化形参的时候，会忽略顶层的const，当形参有顶层const时，传给它的常量对象或者非常量对象都是可以的。
+
 ## 练习6.1
 > 实参和形参的区别？
 > - 函数定义时使用形参列表；
@@ -144,3 +148,51 @@ string::size_type find_char(const string &s, char c, string::size_type &occurs)
 
 ```
 > 通过引用可以变相的返回多个值。
+
+## 练习6.15
+> 说明find_char函数中三个形参为什么是现在的类型？
+
+```cpp
+string::size_type find_char(const string &s, char c, string::size_type &occurs)
+{
+	auto ret = s.size();
+
+	occurs = 0;
+	for (decltype(ret) i = 0; i != s.size(); ++i)
+	{
+		if (s[i] == c)
+		{
+			if (ret == s.size())
+				ret = i;
+			++occurs;
+		}
+	}
+
+	return ret;
+}
+
+```
+> - const string& 常量引用，不需要进行参数的拷贝，也不会进行修改；
+> - char c，c字符晋作为查找
+> - string::size_type &occurs，需要计数，修改occurs，所有为引用可以改变值.
+
+
+## 练习6.16
+> 指出下列函数的局限性并设法改善。
+
+```cpp
+
+bool 
+is_empty(string &s) { return s.empty();}
+
+//传入	cout << is_empty("hello world") << endl;　会报错
+```
+> 不能把const对象字面值或者需要类型转换的对象传递给普通的引用形参。
+
+##　练习6.17
+> 编写一个函数，判断string对象是否含有大写字母。编写另外一个函数，把string对象全都改成小写形式。
+
+```cpp
+
+```
+
