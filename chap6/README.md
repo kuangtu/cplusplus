@@ -288,3 +288,24 @@ void print(const int ia[10])
 ## 练习6.26
 > [代码参见exec6_26](exec6_26.cpp)
 
+## 练习6.27
+> 编写一个函数，它的参数是initializer_list<int>类型的对象，函数的功能是计算列表中所有元素的和。
+> [代码参见exec6_27](exec6_27.cpp)
+
+## 练习6.28
+> 循环内的elem是什么类型?
+
+```cpp
+
+void error_msg(ErrCode e, initializer_list<string> il)
+{
+	cout << e.msg() << ":";
+    for (const auto &elme: il)
+    	cout << elem << " ";
+    cout << endl;
+}
+
+```
+> 引用类型。
+
+## 练习
