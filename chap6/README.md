@@ -27,6 +27,30 @@ begin(j), end(j)
 ##　数组引用形参
 
 
+## 引用返回左值
+
+## 列表初始化返回值
+> C++11，函数可以返回花括号包围的值的列表。
+
+```cpp
+
+vector<string> process()
+{
+	//expected 和 actual 是 string对象
+    if (expected.empty())
+    	return {};
+    else if (exepected == actual)
+    	return {"functionX", "okay"};
+    else
+    	return {"functionx", expected, actual}
+}
+```
+
+## 返回数组指针
+> 因为数组不能被拷贝，所以函数不能返回数组。
+> 但可以返回数组的指针或者引用。
+
+
 ## 练习6.1
 > 实参和形参的区别？
 > - 函数定义时使用形参列表；
@@ -308,4 +332,69 @@ void error_msg(ErrCode e, initializer_list<string> il)
 ```
 > 引用类型。
 
-## 练习
+## 练习6.29
+> 在范围for循环中initializer_list对象时，应该将循环控制变量声明成引用类型吗？
+
+
+## 练习6.30
+
+
+## 练习6.31
+> 返回局部变量的引用无效。
+> 返回字符串常量的引用无效。
+
+## 练习6.32
+> 下面的函数合法吗？
+
+```cpp
+int &get(int *arry, int index) { return arry[index];}
+int main()
+{
+	int ia[10];
+    for (int i = 0; i != 10; ++i)
+    get(ia, 1) = i;
+}
+```
+> 合法，通过左值引用，将数组中的元素赋值。
+
+## 练习6.33
+> 编写一个递归函数，输出vector对象的内容。
+
+```cpp
+void print(vector<int>::iterator beg, vector<int>::iterator end)
+{
+	if (beg != end)
+	{
+		cout << *beg << " ";
+		print(++beg, end);
+	}
+
+}
+
+
+int
+main(int argc, char *argv[]) 
+{
+	vector<int> ivec = {1, 2, 3, 4, 5};
+
+
+	print(ivec.begin(), ivec.end());
+
+	return 0;
+
+}
+
+```
+
+## 练习6.34
+> 如果递归循环中的factorial函数的停止条件如下，将发生什么情况?
+> -如果val为负数，则递归循环不会停止。
+
+## 练习6.35
+> 为什么factorial函数传入的是val-1，而不是val--.
+> 如果是val--，返回的求值是val，会陷入死循环。
+
+
+
+
+
