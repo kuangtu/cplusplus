@@ -49,6 +49,7 @@ vector<string> process()
 ## 返回数组指针
 > 因为数组不能被拷贝，所以函数不能返回数组。
 > 但可以返回数组的指针或者引用。
+> 尾置返回类型
 
 
 ## 练习6.1
@@ -394,7 +395,45 @@ main(int argc, char *argv[])
 > 为什么factorial函数传入的是val-1，而不是val--.
 > 如果是val--，返回的求值是val，会陷入死循环。
 
+## 练习6.36
+> 编写一个函数声明，返回数组的引用，并且该数组包含10个string对象。
 
+```cpp
+string (&func(parameter_list))[10]
+```
 
+## 练习6.37
+> 改写练习6.36，采用不同的声明。
+
+```cpp
+(1) 类型别名
+typedef String arrT[10];
+arrT& func(paramlist);
+
+(2) 尾置返回类型
+auto func(paramlist)->string(&)[10]
+
+(3) 使用decltype
+string arraystr[10];
+
+decltype(arraystr) &func(paramlist)
+```
+
+## 练习6.38
+> 修改arrPtr函数，使其返回数组的引用。
+
+```cpp
+int odd[] = {1, 3, 5, 7, 9};
+decltype(odd) *arrPtr(int i)
+{
+	return (i % 2) ? &odd : &even;
+}
+
+修改为:
+decltype(odd) &arrPtr(int i)
+{
+	return (i % 2) ? odd : even;
+}
+```
 
 
