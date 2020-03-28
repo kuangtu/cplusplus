@@ -479,4 +479,28 @@ string make_plural(size_t ctr, const string& word, const string& ending = "s")
 ```
 
 ## 练习 6.43
+>　内联函数和普通的函数声明，都可以放到头文件中。
+
+## 练习 6.44
+> 修改为内联函数。
+
+```cpp
+inline isShorter(const string &s1, const string &s2)
+{
+	return s1.size() < s2.size();
+}
+
+```
+
+## 练习6.45
+> 如果函数代码很少，含义非常清楚，可以定义为内联函数。
+
+
+## 练习6.46
+> 不能。isShorter的参数 const string &s1，不是字面值。
+> constexpr函数，函数的返回类型及所有形参的类型都是字面值类型，且函数体中只有一条return语句。
+
+
+
+
 
