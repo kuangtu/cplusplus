@@ -69,6 +69,15 @@ Record lookup(const Accout&);
 > 局部变量不能作为默认实参。
 > 函数调用时实参按其位置解析，默认实参负责填补函数调用缺少的尾部实参。
 
+
+## 函数匹配
+> 候选函数:与被调用的函数同名，其声明在调用点可见。
+> 可行函数：形参数量与本次调用提供的实参数量相等，而是每个实参的类型与对应的形参类型相同，或者能转换成形参的类型。
+
+
+## 实参类型转换
+> 编译器将实参类型到形参类型的转换分为几个等级。参见6.6.1节。
+
 ## 练习6.1
 > 实参和形参的区别？
 > - 函数定义时使用形参列表；
@@ -500,7 +509,105 @@ inline isShorter(const string &s1, const string &s2)
 > 不能。isShorter的参数 const string &s1，不是字面值。
 > constexpr函数，函数的返回类型及所有形参的类型都是字面值类型，且函数体中只有一条return语句。
 
+## 练习6.47
+```cpp
+void print(vector<int>::iterator beg, vector<int>::iterator end)
+{
+	#ifndef NDEBUG
+    	cout << end - beg << endl;
+    #endif
+	if (beg != end)
+	{
+		cout << *beg << " ";
+		print(++beg, end);
+	}
+
+}
+```
+
+## 练习6.48
+> 不正确，应该检测s是否为空。
+
+## 练习6.49
+> 候选函数：本地调用对应的重载函数集。
+> 可行函数：从候选函数中选出能被这组实参调用的函数。
 
 
+## 练习6.50
+> [代码参见exec6_50](exec6_50.cpp)
+>(a)二义性，编译器报错。
+>(b)匹配func(int)
+>(c)匹配func(int,int)
+>(d)匹配func(double, double)
+
+## 练习6.51
+[代码参见exec6_50](exec6_50.cpp)
 
 
+## 练习6.52
+```cpp
+mainip('a', 'z');	//将char类型提升为int，可以匹配
+mainip(55.4, dobj);	//通过类型转换，匹配mainip(int,int)
+```
+
+## 练习6.53
+```cpp
+(a) 合法，参数是int类型的引用，以及int类型的常量引用
+int calc(int&, int&); 
+int calc(const int&, const int&); 
+
+(b) 合法，参数是char类型的指针，以及const char类型指向常量的指针
+int calc(char*, char*); 
+int calc(const char*, const char*); 
+
+(c) 不合法，形参都是char *.
+```
+
+## 练习6.54
+> [代码参见exec6_64](exec6_54.cpp)
+
+## 练习6.55
+> [代码参见exec6_55](exec6_55.cpp)
+
+`
+## 练习6.56
+>使用类型别名定义函数指针。
+
+```cpp
+int addint(int a, int b)
+{
+    return a + b;
+}
+
+int subint(int a, int b)
+{
+    return a - b;
+}
+
+int mulint(int a, int b)
+{
+    return a * b;
+}
+
+int divint(int a, int b)
+{
+    //TODO 
+    return a / b;
+}
+
+int
+main(int argc, char *argv[]) 
+{
+
+	using PF = int(*)(int, int);
+
+	vector<PF> funv{addint, subint, mulint, divint};
+
+	for(auto f : funv)
+	{
+		cout << f(1, 1) << endl;
+	}
+	return 0;
+
+}
+```
